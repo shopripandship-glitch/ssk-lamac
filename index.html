@@ -17,9 +17,13 @@
 <meta property="og:image" content="https://ssklamac.sk/img/hero.jpg">
 <meta property="og:image:width" content="1344">
 <meta property="og:image:height" content="752">
+<meta property="og:image:alt" content="Ilustračné foto: pohľad cez mieridlá na terč v strelnici">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cg fill='none' stroke='%23C9A462' stroke-width='2'%3E%3Ccircle cx='15' cy='15' r='13'/%3E%3Ccircle cx='15' cy='15' r='7'/%3E%3C/g%3E%3Ccircle cx='15' cy='15' r='2.5' fill='%23C9A462'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SportsClub", "name": "Športovo-strelecký klub Lamač", "alternateName": "ŠSK Lamač", "url": "https://ssklamac.sk/", "logo": "https://ssklamac.sk/img/hero.jpg", "image": "https://ssklamac.sk/img/hero.jpg", "description": "Športovo-strelecký klub Lamač v Bratislave. Športová streľba zo vzduchovej a malokalibrovej pušky pre mládež aj dospelých, člen Slovenského streleckého zväzu.", "sport": "Sport shooting", "foundingDate": "2014-01-30", "identifier": {"@type": "PropertyValue", "propertyID": "IČO", "value": "42358949"}, "address": {"@type": "PostalAddress", "streetAddress": "Studenohorská 48", "postalCode": "841 03", "addressLocality": "Bratislava-Lamač", "addressCountry": "SK"}, "memberOf": {"@type": "SportsOrganization", "name": "Slovenský strelecký zväz", "url": "https://www.shooting.sk"}}</script>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SportsClub", "@id": "https://ssklamac.sk/#club", "name": "Športovo-strelecký klub Lamač", "alternateName": "ŠSK Lamač", "url": "https://ssklamac.sk/", "logo": "https://ssklamac.sk/img/logo.png", "image": "https://ssklamac.sk/img/hero.jpg", "description": "Športovo-strelecký klub Lamač v Bratislave. Športová streľba zo vzduchovej a malokalibrovej pušky pre mládež aj dospelých, člen Slovenského streleckého zväzu.", "sport": "Sport shooting", "foundingDate": "2014-01-30", "identifier": {"@type": "PropertyValue", "propertyID": "IČO", "value": "42358949"}, "address": {"@type": "PostalAddress", "streetAddress": "Studenohorská 48", "postalCode": "841 03", "addressLocality": "Bratislava-Lamač", "addressCountry": "SK"}, "memberOf": {"@type": "SportsOrganization", "name": "Slovenský strelecký zväz", "url": "https://www.shooting.sk"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://ssklamac.sk/#website", "name": "ŠSK Lamač", "alternateName": ["Športovo-strelecký klub Lamač", "ssklamac.sk"], "url": "https://ssklamac.sk/", "inLanguage": "sk", "publisher": {"@id": "https://ssklamac.sk/#club"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -48,8 +52,6 @@ p{margin:0}
 .label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
 .muted{color:var(--muted)}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.todo{border-bottom:1px dashed var(--brass-dim);color:var(--bone)}
-.todo::after{content:" ✎";color:var(--brass-dim);font-size:.8em}
 
 /* nav */
 header.nav{position:absolute;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10}
@@ -174,6 +176,7 @@ ol.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--brass-dim
 .steps h3{font-size:1.6rem}
 .steps p{color:var(--muted);font-weight:300;margin-top:.35rem}
 .table-scroll{overflow-x:auto;margin-top:clamp(36px,5vw,56px)}
+.schedule-note{margin-top:clamp(28px,4vw,44px);padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-weight:300;max-width:46ch}
 table{border-collapse:collapse;width:100%;min-width:460px;font-size:.92rem}
 th,td{text-align:left;padding:.85rem 1rem .85rem 0;border-bottom:1px solid var(--line)}
 th{font-family:var(--f-mono);font-weight:400;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
@@ -239,7 +242,7 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
 <main id="top">
   <section class="hero">
     <img src="img/hero.jpg" alt="Pohľad strelca cez mieridlá pištole na rozmazaný terč v hale strelnice">
-    <video id="hero-video" src="img/hero.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+    <video id="hero-video" src="img/hero.mp4" muted playsinline preload="none" aria-hidden="true"></video>
     <span class="hero-hint" id="hero-hint">Namierte kurzorom</span>
     <div class="wrap">
       <p class="label">Športovo-strelecký klub · Bratislava-Lamač</p>
@@ -265,7 +268,6 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
       <div class="body">
         <p class="lead">Malý klub z Lamača s veľkým rešpektom k presnosti, bezpečnosti a tradícii športovej streľby.</p>
         <p>Športovo-strelecký klub Lamač pôsobí od roku 2014 ako občianske združenie a je registrovaným členom Slovenského streleckého zväzu. Zameriavame sa na športovú streľbu z pušky.</p>
-        <p><span class="todo">Doplniť: história klubu, tréneri, úspechy členov a kde trénujeme.</span></p>
       </div>
       <dl class="ledger">
         <div><dt>Názov</dt><dd>Športovo-strelecký klub Lamač</dd></div>
@@ -386,16 +388,8 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
             <div class="dist">50<small>METROV</small></div>
             <div>
               <h3>Malokalibrovka</h3>
-              <p>Puška ráže .22 LR pre pokročilých. Polohové disciplíny v ľahu, kľaku a stoji na otvorenej strelnici. <span class="todo">overiť</span></p>
+              <p>Puška ráže .22 LR pre pokročilých. Polohové disciplíny v ľahu, kľaku a stoji na otvorenej strelnici.</p>
               <div class="specs"><span>kaliber <b>.22 LR</b></span><span>desiatka <b>⌀ 10,4 mm</b></span><span>terč <b>⌀ 154,4 mm</b></span></div>
-            </div>
-          </div>
-          <div class="disc-item">
-            <div class="dist">25<small>METROV</small></div>
-            <div>
-              <h3>Športová pištoľ</h3>
-              <p>Pre členov so zbrojným preukazom. Presná a rýchlopalná časť na jednom stave. <span class="todo">overiť, či klub ponúka</span></p>
-              <div class="specs"><span>kaliber <b>.22 LR</b></span><span>terč <b>⌀ 500 mm</b></span></div>
             </div>
           </div>
         </div>
@@ -434,16 +428,7 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
           <li><span class="n">iii.</span><div><h3>Prihláška a príspevok</h3><p>Vyplníte prihlášku a <a href="#prispevky">ročný príspevok</a> uhradíte prevodom na účet klubu.</p></div></li>
           <li><span class="n">iv.</span><div><h3>Registrácia v SSZ</h3><p>Zaregistrujeme vás vo zväze, aby ste mohli štartovať na súťažiach.</p></div></li>
         </ol>
-        <div class="table-scroll">
-          <table>
-            <thead><tr><th>Deň</th><th>Čas</th><th>Skupina</th></tr></thead>
-            <tbody>
-              <tr><td>Utorok</td><td class="mono"><span class="todo">16:00–17:30</span></td><td>Mládež 10–15 rokov</td></tr>
-              <tr><td>Štvrtok</td><td class="mono"><span class="todo">17:00–19:00</span></td><td>Juniori a dospelí</td></tr>
-              <tr><td>Sobota</td><td class="mono"><span class="todo">09:00–12:00</span></td><td>Pokročilí, 50 m</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <p class="schedule-note">Tréningové časy dohodneme individuálne. Ozvite sa a nájdeme termín, ktorý vám vyhovuje.</p>
       </div>
       <figure class="photo" data-play="loop"><img src="img/naboje-start.jpg" alt="Ruky strelca plnia zásobník nábojmi .22 LR na drevenom stole" loading="lazy"><video src="img/naboje.mp4" muted playsinline loop preload="metadata" aria-hidden="true"></video><figcaption>Ilustračné foto</figcaption></figure>
     </div>
@@ -456,11 +441,11 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
         <h2>Ročné <em>členstvo</em>.</h2>
       </div>
       <div class="tiers">
-        <div class="tier"><span class="t-name">Mládež</span><span class="t-price"><b>60 €</b> / rok</span><span class="t-desc">do 18 rokov · klubová vzduchovka a terče v cene</span></div>
-        <div class="tier"><span class="t-name">Študent / senior</span><span class="t-price"><b>90 €</b> / rok</span><span class="t-desc">študenti do 26 rokov a dôchodcovia</span></div>
-        <div class="tier"><span class="t-name">Dospelý</span><span class="t-price"><b>120 €</b> / rok</span><span class="t-desc">plné členstvo vrátane registrácie v SSZ</span></div>
+        <div class="tier"><span class="t-name">Mládež</span><span class="t-desc">do 18 rokov · klubová vzduchovka a terče v cene</span></div>
+        <div class="tier"><span class="t-name">Študent / senior</span><span class="t-desc">študenti do 26 rokov a dôchodcovia</span></div>
+        <div class="tier"><span class="t-name">Dospelý</span><span class="t-desc">plné členstvo vrátane registrácie v SSZ</span></div>
       </div>
-      <p class="tier-note"><span class="todo">Sumy sú orientačné, upravte podľa stanov klubu.</span> Príspevok sa platí na kalendárny rok prevodom na účet klubu. Platobné údaje dostanete po prijatí za člena.</p>
+      <p class="tier-note">Výšku príspevku určujú stanovy klubu a radi vám ju povieme pri prvom kontakte. Príspevok sa platí na kalendárny rok prevodom na účet klubu, platobné údaje dostanete po prijatí za člena.</p>
     </div>
   </section>
 
@@ -496,7 +481,6 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
     <dl class="addr">
       <div><dt>Sídlo</dt><dd>Studenohorská 48<br>841 03 Bratislava-Lamač</dd></div>
       <div><dt>Kontakt</dt><dd>Telefón a e-mail čoskoro doplníme.</dd></div>
-      <div><dt>Strelnica</dt><dd><span class="todo">adresa tréningov</span></dd></div>
       <div><dt>IČO</dt><dd class="mono">42358949</dd></div>
     </dl>
   </div>
@@ -530,6 +514,7 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(reduce){v.remove();document.getElementById("hero-hint").remove();return}
   const touch=matchMedia("(hover: none)").matches;
+  if(!touch)addEventListener("load",()=>{v.preload="auto"});
   document.getElementById("hero-hint").textContent=touch?"Ťuknite na fotku":"Namierte kurzorom";
   const play=()=>{if(hero.classList.contains("playing"))return;v.currentTime=0;v.play().then(()=>hero.classList.add("playing","played")).catch(()=>{})};
   const stop=()=>{hero.classList.remove("playing");setTimeout(()=>{if(!hero.classList.contains("playing")){v.pause();v.currentTime=0}},500)};

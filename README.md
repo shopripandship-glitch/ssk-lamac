@@ -6,8 +6,8 @@ Statická stránka Športovo-streleckého klubu Lamač (Bratislava-Lamač), host
 - `img/` – fotografie a video v úvode (ilustračné, vygenerované AI – nahradiť fotkami klubu)
 
 ## Úprava obsahu
-Texty sa menia priamo v `index.html`. Miesta, ktoré treba doplniť, majú triedu `todo`.
+Texty sa menia priamo v `index.html`.
 Po pushnutí do vetvy `main` sa stránka do minúty aktualizuje.
 
 ## Doména
-Po registrácii domény pridajte súbor `CNAME` s obsahom `ssklamac.sk` a u registrátora nastavte DNS záznamy na GitHub Pages.
+Web beží na https://ssklamac.sk (súbor `CNAME`). DNS je vo Websupporte: A/AAAA na GitHub Pages, `www` ako CNAME. TXT záznam `google-site-verification` nemazať – overuje Google Search Console.
