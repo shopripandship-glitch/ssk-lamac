@@ -3,12 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ŠSK Lamač</title>
-<meta name="description" content="Športovo-strelecký klub Lamač – športová streľba z pušky v Bratislave-Lamači. Tréningy pre mládež aj dospelých, člen Slovenského streleckého zväzu.">
-<meta property="og:title" content="ŠSK Lamač">
-<meta property="og:description" content="Športová streľba v Bratislave-Lamači. Pokoj. Dych. Výstrel.">
-<meta property="og:image" content="img/hero.jpg">
+<title>ŠSK Lamač – Športovo-strelecký klub Bratislava-Lamač</title>
+<meta name="description" content="Športovo-strelecký klub Lamač v Bratislave. Športová streľba zo vzduchovej a malokalibrovej pušky pre mládež aj dospelých, člen Slovenského streleckého zväzu.">
+<link rel="canonical" href="https://ssklamac.sk/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0E1210">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:site_name" content="ŠSK Lamač">
+<meta property="og:title" content="ŠSK Lamač – Športovo-strelecký klub Bratislava-Lamač">
+<meta property="og:description" content="Športovo-strelecký klub Lamač v Bratislave. Športová streľba zo vzduchovej a malokalibrovej pušky pre mládež aj dospelých, člen Slovenského streleckého zväzu.">
+<meta property="og:url" content="https://ssklamac.sk/">
+<meta property="og:image" content="https://ssklamac.sk/img/hero.jpg">
+<meta property="og:image:width" content="1344">
+<meta property="og:image:height" content="752">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cg fill='none' stroke='%23C9A462' stroke-width='2'%3E%3Ccircle cx='15' cy='15' r='13'/%3E%3Ccircle cx='15' cy='15' r='7'/%3E%3C/g%3E%3Ccircle cx='15' cy='15' r='2.5' fill='%23C9A462'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SportsClub", "name": "Športovo-strelecký klub Lamač", "alternateName": "ŠSK Lamač", "url": "https://ssklamac.sk/", "logo": "https://ssklamac.sk/img/hero.jpg", "image": "https://ssklamac.sk/img/hero.jpg", "description": "Športovo-strelecký klub Lamač v Bratislave. Športová streľba zo vzduchovej a malokalibrovej pušky pre mládež aj dospelých, člen Slovenského streleckého zväzu.", "sport": "Sport shooting", "foundingDate": "2014-01-30", "identifier": {"@type": "PropertyValue", "propertyID": "IČO", "value": "42358949"}, "address": {"@type": "PostalAddress", "streetAddress": "Studenohorská 48", "postalCode": "841 03", "addressLocality": "Bratislava-Lamač", "addressCountry": "SK"}, "telephone": "+421911777334", "email": "jofu.kralovic@gmail.com", "memberOf": {"@type": "SportsOrganization", "name": "Slovenský strelecký zväz", "url": "https://www.shooting.sk"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -123,8 +134,10 @@ dl.ledger{margin:0;border-top:1px solid var(--brass-dim)}
 /* disciplines */
 .disc{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,72px);align-items:stretch}
 .photo{position:relative;margin:0;overflow:hidden;min-height:420px}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
-.photo:hover img{transform:scale(1.03)}
+.photo img,.photo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease,opacity .6s ease}
+.photo video{opacity:0}
+.photo.playing video{opacity:1}
+.photo:hover img,.photo:hover video{transform:scale(1.03)}
 .photo figcaption{position:absolute;left:16px;bottom:14px;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 60%,transparent)}
 .disc-list{display:flex;flex-direction:column}
 .disc-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,36px);padding-block:clamp(24px,3vw,36px);border-top:1px solid var(--line)}
@@ -359,7 +372,7 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
         <h2>Dve vzdialenosti,<br>jedna <em>desiatka</em>.</h2>
       </div>
       <div class="disc">
-        <figure class="photo"><img src="img/terc.jpg" alt="Prestrelený papierový terč s tesnou skupinou zásahov v čiernom poli" loading="lazy"><figcaption>Ilustračné foto</figcaption></figure>
+        <figure class="photo" data-play="once"><img src="img/terc-start.jpg" alt="Papierový terč s čiernym stredom, do ktorého postupne dopadajú zásahy" loading="lazy"><video src="img/terc.mp4" muted playsinline preload="metadata" aria-hidden="true"></video><figcaption>Ilustračné foto</figcaption></figure>
         <div class="disc-list">
           <div class="disc-item">
             <div class="dist">10<small>METROV</small></div>
@@ -432,7 +445,7 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
           </table>
         </div>
       </div>
-      <figure class="photo"><img src="img/naboje.jpg" alt="Ruky strelca plnia zásobník nábojmi .22 LR na drevenom stole" loading="lazy"><figcaption>Ilustračné foto</figcaption></figure>
+      <figure class="photo" data-play="loop"><img src="img/naboje-start.jpg" alt="Ruky strelca plnia zásobník nábojmi .22 LR na drevenom stole" loading="lazy"><video src="img/naboje.mp4" muted playsinline loop preload="metadata" aria-hidden="true"></video><figcaption>Ilustračné foto</figcaption></figure>
     </div>
   </section>
 
@@ -494,6 +507,24 @@ footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1
 <footer><div class="wrap"><span>© Športovo-strelecký klub Lamač, o. z.</span><span>Návrh webu · fotografie sú ilustračné</span></div></footer>
 
 <script>
+(function(){
+  // section photos: play when scrolled into view, pause when out; "once" holds the last frame and replays on hover
+  const figs=document.querySelectorAll(".photo[data-play]");
+  if(!figs.length)return;
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver" in window)){figs.forEach(f=>f.querySelector("video")?.remove());return}
+  const start=f=>{const v=f.querySelector("video");if(!v)return;v.play().then(()=>f.classList.add("playing")).catch(()=>{})};
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    const f=e.target,v=f.querySelector("video");if(!v)return;
+    if(e.isIntersecting){if(!(f.dataset.play==="once"&&v.ended))start(f)}else if(!v.paused)v.pause();
+  }),{threshold:.4});
+  figs.forEach(f=>{
+    io.observe(f);
+    const v=f.querySelector("video");
+    v&&v.addEventListener("error",()=>{f.classList.remove("playing");v.remove()});
+    if(f.dataset.play==="once")f.addEventListener("mouseenter",()=>{if(v&&v.ended){v.currentTime=0;start(f)}});
+  });
+})();
+
 (function(){
   // hero: on hover play the 3-shot sequence once, hold the last frame, fade back to the photo on leave
   const hero=document.querySelector(".hero"), v=document.getElementById("hero-video");
