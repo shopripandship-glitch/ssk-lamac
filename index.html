@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ŠSK Lamač</title>
+<meta name="description" content="Športovo-strelecký klub Lamač – športová streľba z pušky v Bratislave-Lamači. Tréningy pre mládež aj dospelých, člen Slovenského streleckého zväzu.">
+<meta property="og:title" content="ŠSK Lamač">
+<meta property="og:description" content="Športová streľba v Bratislave-Lamači. Pokoj. Dych. Výstrel.">
+<meta property="og:image" content="img/hero.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cg fill='none' stroke='%23C9A462' stroke-width='2'%3E%3Ccircle cx='15' cy='15' r='13'/%3E%3Ccircle cx='15' cy='15' r='7'/%3E%3C/g%3E%3Ccircle cx='15' cy='15' r='2.5' fill='%23C9A462'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single dark look taken from the photography — full-bleed photo hero, a technical-drawing band, then quiet two-column editorial sections ruled in brass hairlines */
+:root{
+  --bg:#0E1210; --bg-2:#141A17; --bone:#E9E3D6; --muted:#9A9C92; --line:#2A302C;
+  --brass:#C9A462; --brass-dim:#8C7444; --paper:#E6DFCF; --ink:#121212;
+  --f-display:"Instrument Serif","Cormorant Garamond",Georgia,serif;
+  --f-body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --wrap:1240px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--bone);font-family:var(--f-body);font-weight:400;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,5vw,56px)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:1px solid var(--brass);outline-offset:4px}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(2.6rem,5.6vw,4.6rem)}
+h2 em,h1 em{font-style:italic;color:var(--brass)}
+h3{font-size:1.9rem}
+p{margin:0}
+.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+.muted{color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.todo{border-bottom:1px dashed var(--brass-dim);color:var(--bone)}
+.todo::after{content:" ✎";color:var(--brass-dim);font-size:.8em}
+
+/* nav */
+header.nav{position:absolute;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10}
+header.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:26px}
+.brand{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+.brand svg{width:30px;height:30px;color:var(--brass)}
+.brand b{font-family:var(--f-display);font-weight:400;font-size:1.5rem;letter-spacing:.02em}
+nav ul{display:flex;gap:2.2rem;list-style:none;margin:0;padding:0;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+nav a{text-decoration:none;color:color-mix(in srgb,var(--bone) 72%,transparent);transition:color .2s}
+nav a:hover{color:var(--bone)}
+@media (max-width:860px){nav ul{display:none}}
+.btn{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--f-body);font-size:.8rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:.95rem 1.5rem;border:1px solid var(--brass);color:var(--bone);background:transparent;text-decoration:none;cursor:pointer;transition:background .25s,color .25s}
+.btn:hover{background:var(--brass);color:var(--bg)}
+.btn.fill{background:var(--brass);color:var(--bg)}
+.btn.fill:hover{background:var(--bone);border-color:var(--bone)}
+.btn .arr{transition:transform .25s}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* hero */
+.hero{position:relative;min-height:min(92vh,860px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero img,.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;transform:scaleX(-1);z-index:-2}
+.hero video{opacity:0;transition:opacity .5s ease}
+.hero.playing video{opacity:1}
+.hero-hint{position:absolute;right:clamp(16px,5vw,56px);top:50%;display:flex;align-items:center;gap:.7rem;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 55%,transparent);transition:opacity .4s}
+.hero-hint::before{content:"";width:9px;height:9px;border:1px solid var(--brass);border-radius:50%;box-shadow:0 0 0 4px color-mix(in srgb,var(--brass) 18%,transparent);animation:pulse 2s ease-in-out infinite}
+.hero.playing .hero-hint,.hero.played .hero-hint{opacity:0}
+@keyframes pulse{50%{box-shadow:0 0 0 9px transparent}}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 82%,transparent) 30%,color-mix(in srgb,var(--bg) 10%,transparent) 62%,transparent 100%),
+  linear-gradient(0deg,var(--bg) 0%,transparent 35%)}
+.hero .wrap{width:100%;padding-block:150px clamp(48px,7vw,88px)}
+.hero h1{font-size:clamp(3.6rem,9.5vw,8.6rem);line-height:.88;max-width:9ch}
+.hero .lede{max-width:36ch;margin-top:1.8rem;font-size:1.12rem;font-weight:300;color:color-mix(in srgb,var(--bone) 82%,transparent)}
+.hero .ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.4rem}
+.hero .label{display:flex;align-items:center;gap:.9rem;margin-bottom:1.8rem}
+.hero .label::before{content:"";width:42px;height:1px;background:var(--brass)}
+.hero-meta{display:flex;gap:clamp(1.4rem,4vw,3.4rem);flex-wrap:wrap;margin-top:clamp(48px,7vw,80px);padding-top:1.4rem;border-top:1px solid color-mix(in srgb,var(--bone) 18%,transparent);max-width:760px}
+.hero-meta div{display:flex;flex-direction:column;gap:.1rem}
+.hero-meta strong{font-family:var(--f-display);font-weight:400;font-size:2.1rem;line-height:1}
+.hero-meta span{font-size:.78rem;letter-spacing:.06em;color:var(--muted)}
+.credit{position:absolute;right:clamp(16px,5vw,56px);bottom:22px;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;color:color-mix(in srgb,var(--bone) 40%,transparent);text-transform:uppercase}
+@media (max-width:640px){.hero img,.hero video{object-position:30% 40%}.hero-hint{top:auto;bottom:22px}.hero::after{background:linear-gradient(0deg,var(--bg) 8%,color-mix(in srgb,var(--bg) 70%,transparent) 55%,color-mix(in srgb,var(--bg) 30%,transparent) 100%)}.credit{display:none}}
+
+/* generic section */
+section.sec{border-top:1px solid var(--line)}
+section.sec>.wrap{padding-block:clamp(72px,10vw,140px)}
+.head{display:grid;grid-template-columns:220px 1fr;gap:clamp(16px,4vw,56px);align-items:start;margin-bottom:clamp(36px,5vw,64px)}
+.head .label{padding-top:.9rem}
+@media (max-width:780px){.head{grid-template-columns:1fr}}
+
+/* about */
+.about{display:grid;grid-template-columns:220px 1.2fr .9fr;gap:clamp(16px,4vw,56px)}
+.about .lead{font-family:var(--f-display);font-size:clamp(1.7rem,2.8vw,2.3rem);line-height:1.2}
+.about .body p{max-width:58ch;color:color-mix(in srgb,var(--bone) 80%,transparent);font-weight:300}
+.about .body p+p{margin-top:1.1rem}
+.about .body .lead{color:var(--bone);margin-bottom:1.6rem}
+dl.ledger{margin:0;border-top:1px solid var(--brass-dim)}
+.ledger div{display:flex;justify-content:space-between;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.ledger dt{font-size:.85rem;color:var(--muted)}
+.ledger dd{margin:0;font-family:var(--f-mono);font-size:.84rem;text-align:right}
+@media (max-width:980px){.about{grid-template-columns:1fr}}
+
+/* anatomy band */
+.anatomy{position:relative;background:var(--bg-2);border-top:1px solid var(--line);overflow:hidden}
+.anatomy .wrap{padding-block:clamp(64px,9vw,120px)}
+.anatomy .intro{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap}
+.anatomy .intro p{max-width:40ch;color:var(--muted);font-weight:300}
+.drawing{margin-top:clamp(28px,4vw,48px);overflow-x:auto}
+.drawing svg{display:block;width:100%;min-width:760px;height:auto;color:var(--brass)}
+.drawing .part{fill:none;stroke:currentColor;stroke-width:1.1;stroke-linejoin:round;stroke-linecap:round}
+.drawing .fine{fill:none;stroke:currentColor;stroke-width:.6;opacity:.7}
+.drawing .axis{stroke:var(--muted);stroke-width:.6;stroke-dasharray:22 4 3 4;opacity:.6}
+.drawing .lead{stroke:var(--muted);stroke-width:.6;fill:none}
+.drawing .dot{fill:var(--muted)}
+.drawing text{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;fill:var(--bone);text-transform:uppercase}
+.drawing text.n{fill:var(--brass)}
+.drawing .dim{stroke:var(--brass-dim);stroke-width:.6}
+.drawing text.d{fill:var(--muted);font-size:9.5px;letter-spacing:.08em}
+.part{stroke-dasharray:1600;stroke-dashoffset:0;animation:draw 2.6s ease-out both}
+@keyframes draw{from{stroke-dashoffset:1600}to{stroke-dashoffset:0}}
+
+/* disciplines */
+.disc{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,72px);align-items:stretch}
+.photo{position:relative;margin:0;overflow:hidden;min-height:420px}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.photo:hover img{transform:scale(1.03)}
+.photo figcaption{position:absolute;left:16px;bottom:14px;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 60%,transparent)}
+.disc-list{display:flex;flex-direction:column}
+.disc-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,36px);padding-block:clamp(24px,3vw,36px);border-top:1px solid var(--line)}
+.disc-item:last-child{border-bottom:1px solid var(--line)}
+.disc-item .dist{font-family:var(--f-display);font-size:clamp(4.4rem,8vw,6.4rem);line-height:.8;color:var(--brass)}
+.disc-item .dist small{display:block;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.2em;color:var(--muted);margin-top:.8rem}
+.disc-item p{color:color-mix(in srgb,var(--bone) 78%,transparent);font-weight:300;margin-top:.6rem;max-width:46ch}
+.specs{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-top:1rem;font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.specs b{color:var(--bone);font-weight:400}
+@media (max-width:900px){.disc{grid-template-columns:1fr}.photo{min-height:0;aspect-ratio:4/5}}
+
+/* try target */
+.trial{display:grid;grid-template-columns:1fr minmax(0,460px);gap:clamp(24px,6vw,96px);align-items:center}
+.trial p.copy{color:color-mix(in srgb,var(--bone) 78%,transparent);font-weight:300;max-width:44ch;margin-top:1.4rem}
+.target-box{aspect-ratio:1;max-width:100%;background:var(--paper);cursor:crosshair;box-shadow:0 30px 80px -30px #000}
+.target-box svg{width:100%;height:100%;display:block}
+.shot{fill:var(--bg);stroke:var(--brass);stroke-width:.35}
+.shot.last{fill:var(--brass);stroke:var(--bg)}
+.score-row{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-top:14px}
+.score-row span{font-family:var(--f-mono);font-size:.74rem;text-align:center;padding:.4rem 0;border:1px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums}
+.score-row span.on{color:var(--bone);border-color:color-mix(in srgb,var(--bone) 35%,transparent)}
+.score-row span.hi{color:var(--bg);background:var(--brass);border-color:var(--brass)}
+.sum{display:flex;justify-content:space-between;align-items:baseline;margin-top:1.6rem;gap:1rem;flex-wrap:wrap}
+.sum .total{font-family:var(--f-display);font-size:3.4rem;line-height:1}
+.sum .total small{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);margin-left:.4rem}
+.linkbtn{background:none;border:0;padding:0;cursor:pointer;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);text-decoration:underline;text-underline-offset:4px}
+@media (max-width:900px){.trial{grid-template-columns:1fr}}
+
+/* membership */
+.member{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,6vw,96px)}
+ol.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--brass-dim)}
+.steps li{display:grid;grid-template-columns:70px 1fr;gap:1rem;padding:1.5rem 0;border-bottom:1px solid var(--line)}
+.steps .n{font-family:var(--f-display);font-style:italic;font-size:2rem;color:var(--brass);line-height:1}
+.steps h3{font-size:1.6rem}
+.steps p{color:var(--muted);font-weight:300;margin-top:.35rem}
+.table-scroll{overflow-x:auto;margin-top:clamp(36px,5vw,56px)}
+table{border-collapse:collapse;width:100%;min-width:460px;font-size:.92rem}
+th,td{text-align:left;padding:.85rem 1rem .85rem 0;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-weight:400;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+td{font-weight:300}
+.member .photo{min-height:560px}
+@media (max-width:900px){.member{grid-template-columns:1fr}.member .photo{min-height:0}}
+
+/* tiers + application */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--brass-dim)}
+.tier{position:relative;display:flex;flex-direction:column;gap:.35rem;padding:1.6rem 1.6rem 1.8rem 0;border-bottom:1px solid var(--line)}
+.tier+.tier{padding-left:1.6rem;border-left:1px solid var(--line)}
+.tier .t-name{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+.tier .t-price{font-size:.95rem;color:var(--muted)}
+.tier .t-price b{font-family:var(--f-display);font-weight:400;font-size:3.2rem;line-height:1;color:var(--bone);margin-right:.2rem}
+.tier .t-desc{font-size:.9rem;font-weight:300;color:var(--muted)}
+.tier-note{margin-top:1rem;font-size:.85rem;color:var(--muted)}
+@media (max-width:780px){.tiers{grid-template-columns:1fr}.tier+.tier{padding-left:0;border-left:0}}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.rules div{padding:1.8rem 1.8rem 2rem 0;border-bottom:1px solid var(--line)}
+.rules div:not(:nth-child(3n+1)){padding-left:1.8rem;border-left:1px solid var(--line)}
+.rules h3{font-size:1.5rem;margin-bottom:.5rem}
+.rules p{color:var(--muted);font-weight:300;font-size:.95rem}
+@media (max-width:900px){.rules{grid-template-columns:1fr}.rules div:not(:nth-child(3n+1)){padding-left:0;border-left:0}}
+
+/* contact */
+.contact{border-top:1px solid var(--line);background:radial-gradient(ellipse 70% 90% at 85% 100%,color-mix(in srgb,var(--brass) 14%,transparent),transparent 70%),var(--bg)}
+.contact .wrap{padding-block:clamp(80px,11vw,150px);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,6vw,96px);align-items:end}
+.contact h2{font-size:clamp(3.2rem,7.5vw,6.4rem);line-height:.9}
+.contact .sub{margin-top:1.4rem;max-width:40ch;color:color-mix(in srgb,var(--bone) 78%,transparent);font-weight:300}
+.contact .ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.2rem}
+dl.addr{margin:0;border-top:1px solid var(--brass-dim)}
+.addr div{display:grid;grid-template-columns:110px 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.addr dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-top:.25rem}
+.addr dd{margin:0;min-width:0;overflow-wrap:anywhere}
+@media (max-width:900px){.contact .wrap{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+footer .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="ŠSK Lamač">
+      <svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1"><circle cx="15" cy="15" r="13.5"/><circle cx="15" cy="15" r="8.5"/><circle cx="15" cy="15" r="3.5"/><path d="M15 0v6M15 24v6M0 15h6M24 15h6"/></svg>
+      <b>ŠSK Lamač</b>
+    </a>
+    <nav aria-label="Hlavná navigácia"><ul>
+      <li><a href="#klub">Klub</a></li>
+      <li><a href="#discipliny">Disciplíny</a></li>
+      <li><a href="#clenstvo">Členstvo</a></li>
+      <li><a href="#prispevky">Príspevky</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <img src="img/hero.jpg" alt="Pohľad strelca cez mieridlá pištole na rozmazaný terč v hale strelnice">
+    <video id="hero-video" src="img/hero.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+    <span class="hero-hint" id="hero-hint">Namierte kurzorom</span>
+    <div class="wrap">
+      <p class="label">Športovo-strelecký klub · Bratislava-Lamač</p>
+      <h1>Pokoj. Dych. <em>Výstrel.</em></h1>
+      <p class="lede">Športová streľba je disciplína ticha a sústredenia. Učíme ju deti, juniorov aj dospelých, od prvého výstrelu až po súťaže.</p>
+      <div class="ctas">
+        <a class="btn fill" href="#kontakt">Dohodnúť tréning <span class="arr">→</span></a>
+        <a class="btn" href="#klub">O klube</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong class="mono" style="font-family:var(--f-display)">2014</strong><span>rok založenia</span></div>
+        <div><strong>SSZ</strong><span>Slovenský strelecký zväz</span></div>
+        <div><strong>č. 434</strong><span>registrovaný klub</span></div>
+        <div><strong>Puška</strong><span>hlavná disciplína</span></div>
+      </div>
+    </div>
+    <span class="credit">Ilustračné foto</span>
+  </section>
+
+  <section class="sec" id="klub">
+    <div class="wrap about">
+      <p class="label">O klube</p>
+      <div class="body">
+        <p class="lead">Malý klub z Lamača s veľkým rešpektom k presnosti, bezpečnosti a tradícii športovej streľby.</p>
+        <p>Športovo-strelecký klub Lamač pôsobí od roku 2014 ako občianske združenie a je registrovaným členom Slovenského streleckého zväzu. Zameriavame sa na športovú streľbu z pušky.</p>
+        <p><span class="todo">Doplniť: história klubu, tréneri, úspechy členov a kde trénujeme.</span></p>
+      </div>
+      <dl class="ledger">
+        <div><dt>Názov</dt><dd>Športovo-strelecký klub Lamač</dd></div>
+        <div><dt>Forma</dt><dd>občianske združenie</dd></div>
+        <div><dt>Založený</dt><dd>30. 1. 2014</dd></div>
+        <div><dt>IČO</dt><dd>42358949</dd></div>
+        <div><dt>Zväz</dt><dd>SSZ · klub č. 434</dd></div>
+        <div><dt>Sídlo</dt><dd>Studenohorská 48</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="anatomy" aria-labelledby="anat-h">
+    <div class="wrap">
+      <div class="intro">
+        <div>
+          <p class="label" style="margin-bottom:1.2rem">Anatómia presnosti</p>
+          <h2 id="anat-h">Poznať zbraň<br>do <em>poslednej</em> súčiastky.</h2>
+        </div>
+        <p>Každý člen sa najprv naučí zbraň rozobrať, vyčistiť a zložiť. Bezpečnosť začína porozumením mechaniky, až potom prichádza na rad terč.</p>
+      </div>
+      <div class="drawing">
+        <svg viewBox="0 0 1200 470" role="img" aria-label="Technický výkres rozloženej pištole: záver, hlaveň, vratná pružina s vodiacou tyčou, rám, zásobník a náboje">
+          <!-- bore axis -->
+          <line class="axis" x1="20" y1="150" x2="1180" y2="150"/>
+
+          <!-- 01 slide -->
+          <path class="part" d="M90 118 H452 Q462 118 464 128 V172 H118 L104 166 Q90 160 90 148 Z"/>
+          <path class="part" d="M436 118 V110 H448 V118"/>
+          <path class="part" d="M104 118 V108 H124 V118"/>
+          <path class="fine" d="M262 126 H330 V146 H262 Z"/>
+          <path class="fine" d="M130 124 V164 M138 124 V164 M146 124 V164 M154 124 V164 M162 124 V164 M170 124 V164"/>
+          <path class="fine" d="M100 152 H464"/>
+
+          <!-- 02 barrel -->
+          <path class="part" d="M520 132 H578 V140 H822 V160 H578 V168 H520 Z"/>
+          <path class="fine" d="M822 144 H828 V156 H822"/>
+          <path class="fine" d="M530 168 L548 184 H566 L578 168"/>
+          <circle class="fine" cx="826" cy="150" r="3"/>
+
+          <!-- 03 recoil spring + 04 guide rod -->
+          <path class="part" id="spring" d=""/>
+          <path class="part" d="M880 192 H1110 M880 186 V198 H892 V186 Z"/>
+
+          <!-- 05 frame -->
+          <path class="part" d="M130 252 H446 Q458 252 458 262 V276 H330 Q322 276 318 284 L306 300 Q300 306 290 304 L276 300 L300 412 Q302 424 290 426 H214 Q202 426 200 414 L176 300 Q172 284 156 280 L138 276 Q130 274 130 266 Z"/>
+          <path class="part" d="M318 284 Q352 286 360 316 Q364 340 330 342 H286"/>
+          <path class="part" d="M310 296 Q318 306 314 322"/>
+          <path class="fine" d="M140 262 H440"/>
+          <path class="fine" d="M206 316 L226 410 M218 316 L238 410 M230 316 L250 410 M242 316 L262 410"/>
+
+          <!-- 06 magazine -->
+          <g transform="rotate(-8 600 340)">
+            <path class="part" d="M570 262 H632 L644 410 Q644 418 636 418 H572 Q562 418 562 410 Z"/>
+            <path class="fine" d="M574 270 H628"/>
+            <path class="fine" d="M560 424 H648"/>
+            <path class="fine" d="M590 290 H602 V380 H590 Z"/>
+          </g>
+
+          <!-- 07 cartridges -->
+          <g>
+            <path class="part" d="M716 310 H754 Q770 310 778 318 Q770 326 754 326 H716 Z M716 310 V326"/>
+            <path class="part" d="M716 344 H754 Q770 344 778 352 Q770 360 754 360 H716 Z"/>
+            <path class="part" d="M716 378 H754 Q770 378 778 386 Q770 394 754 394 H716 Z"/>
+            <path class="fine" d="M738 310 V326 M738 344 V360 M738 378 V394"/>
+          </g>
+
+          <!-- 08 pins -->
+          <path class="part" d="M880 330 H960 M880 326 V334 M880 360 H940 M880 356 V364"/>
+
+          <!-- leaders + callouts -->
+          <g>
+            <circle class="dot" cx="280" cy="118" r="2"/><path class="lead" d="M280 118 V60 H300"/>
+            <text x="306" y="64"><tspan class="n">01</tspan> &#160;Záver</text>
+            <circle class="dot" cx="700" cy="140" r="2"/><path class="lead" d="M700 140 V60 H720"/>
+            <text x="726" y="64"><tspan class="n">02</tspan> &#160;Hlaveň</text>
+            <circle class="dot" cx="1000" cy="140" r="2"/><path class="lead" d="M1000 140 V60 H1020"/>
+            <text x="1026" y="64"><tspan class="n">03</tspan> &#160;Vratná pružina</text>
+            <circle class="dot" cx="1060" cy="192" r="2"/><path class="lead" d="M1060 192 V230 H1080"/>
+            <text x="1086" y="234"><tspan class="n">04</tspan> &#160;Vodiaca tyč</text>
+            <circle class="dot" cx="250" cy="426" r="2"/><path class="lead" d="M250 426 V450 H270"/>
+            <text x="276" y="454"><tspan class="n">05</tspan> &#160;Rám</text>
+            <circle class="dot" cx="612" cy="420" r="2"/><path class="lead" d="M612 420 V450 H632"/>
+            <text x="638" y="454"><tspan class="n">06</tspan> &#160;Zásobník</text>
+            <circle class="dot" cx="778" cy="352" r="2"/><path class="lead" d="M778 352 H800 V420"/>
+            <text x="760" y="436"><tspan class="n">07</tspan> &#160;Náboje</text>
+            <circle class="dot" cx="960" cy="330" r="2"/><path class="lead" d="M960 330 H990"/>
+            <text x="996" y="334"><tspan class="n">08</tspan> &#160;Kolíky</text>
+          </g>
+
+          <!-- dimension: barrel length -->
+          <path class="dim" d="M520 112 V100 M822 112 V100 M520 106 H822"/>
+          <path class="dim" d="M520 106 l7 -3 v6 Z M822 106 l-7 -3 v6 Z" style="fill:var(--brass-dim)"/>
+          <text class="d" x="640" y="98">L = 114 mm</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="discipliny">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Disciplíny</p>
+        <h2>Dve vzdialenosti,<br>jedna <em>desiatka</em>.</h2>
+      </div>
+      <div class="disc">
+        <figure class="photo"><img src="img/terc.jpg" alt="Prestrelený papierový terč s tesnou skupinou zásahov v čiernom poli" loading="lazy"><figcaption>Ilustračné foto</figcaption></figure>
+        <div class="disc-list">
+          <div class="disc-item">
+            <div class="dist">10<small>METROV</small></div>
+            <div>
+              <h3>Vzduchová puška</h3>
+              <p>Najlepší začiatok pre deti od desiatich rokov. Streľba v hale, bez hluku, so zameraním na postoj, dych a plynulé stlačenie spúšte.</p>
+              <div class="specs"><span>kaliber <b>4,5 mm</b></span><span>desiatka <b>⌀ 0,5 mm</b></span><span>terč <b>⌀ 45,5 mm</b></span></div>
+            </div>
+          </div>
+          <div class="disc-item">
+            <div class="dist">50<small>METROV</small></div>
+            <div>
+              <h3>Malokalibrovka</h3>
+              <p>Puška ráže .22 LR pre pokročilých. Polohové disciplíny v ľahu, kľaku a stoji na otvorenej strelnici. <span class="todo">overiť</span></p>
+              <div class="specs"><span>kaliber <b>.22 LR</b></span><span>desiatka <b>⌀ 10,4 mm</b></span><span>terč <b>⌀ 154,4 mm</b></span></div>
+            </div>
+          </div>
+          <div class="disc-item">
+            <div class="dist">25<small>METROV</small></div>
+            <div>
+              <h3>Športová pištoľ</h3>
+              <p>Pre členov so zbrojným preukazom. Presná a rýchlopalná časť na jednom stave. <span class="todo">overiť, či klub ponúka</span></p>
+              <div class="specs"><span>kaliber <b>.22 LR</b></span><span>terč <b>⌀ 500 mm</b></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="terc">
+    <div class="wrap trial">
+      <div>
+        <p class="label">Vyskúšajte si</p>
+        <h2 style="margin-top:1.2rem">Desatina bodu<br><em>rozhoduje.</em></h2>
+        <p class="copy">Toto je skutočný terč pre vzduchovú pušku na 10 metrov v mierke. Celá desiatka má priemer pol milimetra. Kliknite desaťkrát a uvidíte, aká náročná je jedna séria.</p>
+        <div class="sum">
+          <div class="total" id="total">0,0<small>/ 109,0</small></div>
+          <button class="linkbtn" id="reset" type="button">Nová séria</button>
+        </div>
+        <div class="score-row" id="bar" aria-live="polite"></div>
+      </div>
+      <div class="target-box">
+        <svg viewBox="-25 -25 50 50" id="tsvg" role="img" aria-label="Interaktívny terč pre vzduchovú pušku 10 m"><g id="rings"></g><g id="shots"></g></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="clenstvo">
+    <div class="wrap member">
+      <div>
+        <div class="head" style="grid-template-columns:1fr;margin-bottom:2.4rem">
+          <p class="label">Členstvo</p>
+          <h2>Od prvého výstrelu<br>po <em>súťaž</em>.</h2>
+        </div>
+        <ol class="steps">
+          <li><span class="n">i.</span><div><h3>Ozvite sa</h3><p>Napíšte alebo zavolajte, dohodneme termín ukážkového tréningu.</p></div></li>
+          <li><span class="n">ii.</span><div><h3>Skúšobný tréning</h3><p>Klubovú zbraň aj výstroj vám požičiame. Na vzduchovku netreba zbrojný preukaz.</p></div></li>
+          <li><span class="n">iii.</span><div><h3>Prihláška a príspevok</h3><p>Vyplníte prihlášku a <a href="#prispevky">ročný príspevok</a> uhradíte prevodom na účet klubu.</p></div></li>
+          <li><span class="n">iv.</span><div><h3>Registrácia v SSZ</h3><p>Zaregistrujeme vás vo zväze, aby ste mohli štartovať na súťažiach.</p></div></li>
+        </ol>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Deň</th><th>Čas</th><th>Skupina</th></tr></thead>
+            <tbody>
+              <tr><td>Utorok</td><td class="mono"><span class="todo">16:00–17:30</span></td><td>Mládež 10–15 rokov</td></tr>
+              <tr><td>Štvrtok</td><td class="mono"><span class="todo">17:00–19:00</span></td><td>Juniori a dospelí</td></tr>
+              <tr><td>Sobota</td><td class="mono"><span class="todo">09:00–12:00</span></td><td>Pokročilí, 50 m</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <figure class="photo"><img src="img/naboje.jpg" alt="Ruky strelca plnia zásobník nábojmi .22 LR na drevenom stole" loading="lazy"><figcaption>Ilustračné foto</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec" id="prispevky">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Príspevky</p>
+        <h2>Ročné <em>členstvo</em>.</h2>
+      </div>
+      <div class="tiers">
+        <div class="tier"><span class="t-name">Mládež</span><span class="t-price"><b>60 €</b> / rok</span><span class="t-desc">do 18 rokov · klubová vzduchovka a terče v cene</span></div>
+        <div class="tier"><span class="t-name">Študent / senior</span><span class="t-price"><b>90 €</b> / rok</span><span class="t-desc">študenti do 26 rokov a dôchodcovia</span></div>
+        <div class="tier"><span class="t-name">Dospelý</span><span class="t-price"><b>120 €</b> / rok</span><span class="t-desc">plné členstvo vrátane registrácie v SSZ</span></div>
+      </div>
+      <p class="tier-note"><span class="todo">Sumy sú orientačné, upravte podľa stanov klubu.</span> Príspevok sa platí na kalendárny rok prevodom na účet klubu. Platobné údaje dostanete po prijatí za člena.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="bezpecnost">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Bezpečnosť</p>
+        <h2>Pravidlá <em>strelnice</em>.</h2>
+      </div>
+      <div class="rules">
+        <div><h3>Hlaveň k terčom</h3><p>So zbraňou mierime len smerom k dopadovej ploche, aj keď je nenabitá.</p></div>
+        <div><h3>Prst mimo spúšte</h3><p>Na spúšť ho kladieme až vtedy, keď sme pripravení vystreliť.</p></div>
+        <div><h3>Povel riadiaceho</h3><p>Na stave platí povel riadiaceho streľby. „Stop“ znamená okamžite prestať.</p></div>
+        <div><h3>Otvorený záver</h3><p>Odložená zbraň má otvorený záver a zasunutú bezpečnostnú šnúrku.</p></div>
+        <div><h3>Sluch a zrak</h3><p>Na ostrej strelnici sú chrániče sluchu a okuliare povinné pre každého.</p></div>
+        <div><h3>Deti pod dohľadom</h3><p>Maloletí strieľajú výhradne pod dohľadom trénera.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="kontakt">
+  <div class="wrap">
+    <div>
+      <p class="label">Kontakt</p>
+      <h2 style="margin-top:1.2rem">Príďte si<br><em>vystreliť.</em></h2>
+      <p class="sub">Prvý tréning je ukážkový. Stačí sa ozvať vopred, pušku a terče pripravíme.</p>
+      <div class="ctas">
+        <a class="btn fill" href="https://www.google.com/maps/search/?api=1&query=Studenohorsk%C3%A1+48+Bratislava" target="_blank" rel="noopener">Otvoriť mapu <span class="arr">→</span></a>
+        <a class="btn" href="https://www.shooting.sk" target="_blank" rel="noopener">Strelecký zväz</a>
+      </div>
+    </div>
+    <dl class="addr">
+      <div><dt>Sídlo</dt><dd>Studenohorská 48<br>841 03 Bratislava-Lamač</dd></div>
+      <div><dt>Kontakt</dt><dd>Jozef Kralovič</dd></div>
+      <div><dt>Telefón</dt><dd class="mono">0911 777 334</dd></div>
+      <div><dt>E-mail</dt><dd>jofu.kralovic@gmail.com</dd></div>
+      <div><dt>Strelnica</dt><dd><span class="todo">adresa tréningov</span></dd></div>
+      <div><dt>IČO</dt><dd class="mono">42358949</dd></div>
+    </dl>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© Športovo-strelecký klub Lamač, o. z.</span><span>Návrh webu · fotografie sú ilustračné</span></div></footer>
+
+<script>
+(function(){
+  // hero: on hover play the 3-shot sequence once, hold the last frame, fade back to the photo on leave
+  const hero=document.querySelector(".hero"), v=document.getElementById("hero-video");
+  if(!hero||!v)return;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce){v.remove();document.getElementById("hero-hint").remove();return}
+  const touch=matchMedia("(hover: none)").matches;
+  document.getElementById("hero-hint").textContent=touch?"Ťuknite na fotku":"Namierte kurzorom";
+  const play=()=>{if(hero.classList.contains("playing"))return;v.currentTime=0;v.play().then(()=>hero.classList.add("playing","played")).catch(()=>{})};
+  const stop=()=>{hero.classList.remove("playing");setTimeout(()=>{if(!hero.classList.contains("playing")){v.pause();v.currentTime=0}},500)};
+  if(touch){hero.addEventListener("click",e=>{if(e.target.closest("a"))return;hero.classList.contains("playing")?stop():play()})}
+  else{hero.addEventListener("mouseenter",play);hero.addEventListener("mouseleave",stop)}
+})();
+
+(function(){
+  // recoil spring coil for the drawing
+  const sp=document.getElementById("spring");
+  if(sp){let d="M880 150";for(let x=884,i=0;x<=1110;x+=6,i++)d+=" L"+x+" "+(i%2?140:160);sp.setAttribute("d",d)}
+
+  // ISSF 10 m air rifle target, in mm. Ring k ⌀ = 45.5 − 5·(k−1); black aiming mark ⌀ 30.5 (ring 4); ring 10 ⌀ 0.5.
+  const NS="http://www.w3.org/2000/svg";
+  const rings=document.getElementById("rings"), shotsG=document.getElementById("shots");
+  const mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e};
+  const INK="#121212", PAPER="#E6DFCF";
+  rings.appendChild(mk("circle",{cx:0,cy:0,r:22.75,fill:"none",stroke:INK,"stroke-width":.1}));
+  rings.appendChild(mk("circle",{cx:0,cy:0,r:15.25,fill:INK}));
+  for(let k=1;k<=9;k++){
+    const r=(45.5-5*(k-1))/2, c=k>=4?PAPER:INK;
+    rings.appendChild(mk("circle",{cx:0,cy:0,r,fill:"none",stroke:c,"stroke-width":.1}));
+    if(k<=8){const lr=r-1.25;[[0,-lr],[0,lr],[-lr,0],[lr,0]].forEach(([x,y])=>{const t=mk("text",{x,y:y+.5,"text-anchor":"middle","font-size":1.4,"font-family":"IBM Plex Mono, monospace",fill:c});t.textContent=k;rings.appendChild(t)})}
+  }
+  rings.appendChild(mk("circle",{cx:0,cy:0,r:.25,fill:PAPER}));
+
+  // decimal scoring with a 4.5 mm pellet
+  const score=d=>{let s=d<=2.5?10+.9*(1-d/2.5):10-(d-2.5)/2.5;s=Math.floor(s*10+1e-9)/10;return s<1?0:s};
+  const fmt=n=>n.toFixed(1).replace(".",",");
+  const bar=document.getElementById("bar"), total=document.getElementById("total"), svg=document.getElementById("tsvg");
+  let shots=[];
+  function render(){
+    shotsG.innerHTML="";bar.innerHTML="";
+    shots.forEach((s,i)=>shotsG.appendChild(mk("circle",{cx:s.x,cy:s.y,r:2.25,class:"shot"+(i===shots.length-1?" last":"")})));
+    for(let i=0;i<10;i++){const e=document.createElement("span"),s=shots[i];if(s){e.textContent=fmt(s.v);e.className=s.v>=10.5?"hi":"on"}else e.textContent="·";bar.appendChild(e)}
+    total.innerHTML=fmt(shots.reduce((a,s)=>a+s.v,0))+"<small>/ 109,0</small>";
+  }
+  svg.addEventListener("click",e=>{
+    if(shots.length>=10)shots=[];
+    const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;
+    const p=pt.matrixTransform(svg.getScreenCTM().inverse());
+    const x=p.x+(Math.random()-.5)*1.2,y=p.y+(Math.random()-.5)*1.2;
+    shots.push({x,y,v:score(Math.hypot(x,y))});render();
+  });
+  document.getElementById("reset").addEventListener("click",()=>{shots=[];render()});
+  [[.6,-.9],[-1.8,.4],[2.4,1.9],[-.3,2.8],[1.1,.2]].forEach(([x,y])=>shots.push({x,y,v:score(Math.hypot(x,y))}));
+  render();
+})();
+</script>
+</body>
+</html>
